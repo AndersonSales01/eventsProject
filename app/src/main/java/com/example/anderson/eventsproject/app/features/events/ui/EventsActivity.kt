@@ -1,19 +1,22 @@
 package com.example.anderson.eventsproject.app.features.events.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anderson.eventsproject.MyApplication
 import com.example.anderson.eventsproject.R
 import com.example.anderson.eventsproject.app.features.BaseActivity
+import com.example.anderson.eventsproject.app.features.eventdetail.ui.EventDetailActivity
 import com.example.anderson.eventsproject.app.features.events.viewmodel.EventsViewModel
+import com.example.anderson.eventsproject.domain.model.Event
 import kotlinx.android.synthetic.main.activity_events.*
 import javax.inject.Inject
 
-class EventsActivity : BaseActivity() {
+class EventsActivity : BaseActivity(), Router {
 
     private lateinit var viewModel: EventsViewModel
 
@@ -21,6 +24,10 @@ class EventsActivity : BaseActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var manager: LinearLayoutManager
     private lateinit var adapter: EventsListAdapter
+
+    companion object{
+        const val ID_EVENT_INTENT = "idEvent"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,12 +55,28 @@ class EventsActivity : BaseActivity() {
             Log.d("List", events.toString())
             adapter.loadEvents(events)
         })
+
+        viewModel.loading.observe(this, Observer {
+            if(it){
+                loading_event.visibility = View.VISIBLE
+            }else {
+                loading_event.visibility = View.GONE
+            }
+        })
     }
 
     override fun setupUI() {
-        adapter = EventsListAdapter(this)
+        adapter = EventsListAdapter(this,this)
         manager = LinearLayoutManager(this)
         list_events.layoutManager = manager
         list_events.adapter = adapter
+    }
+
+    override fun toGoDetailScreen(event: Event) {
+        event.let {
+            val intent = Intent(this, EventDetailActivity::class.java)
+            intent.putExtra(ID_EVENT_INTENT,event.id);
+            startActivity(intent)
+        }
     }
 }

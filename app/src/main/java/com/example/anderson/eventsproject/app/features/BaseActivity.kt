@@ -10,7 +10,8 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    abstract fun initialize()
     abstract fun observables()
     abstract fun setupUI()
-    abstract fun initialize()
+
 }

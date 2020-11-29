@@ -10,17 +10,21 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_events.view.*
 
 
-class EventViewHolder(private val context: Context, itemView: View) :
+class EventViewHolder(private val context: Context, private val router: Router, itemView: View) :
     RecyclerView.ViewHolder(itemView) {
 
     fun bindView(event: Event) {
         itemView.title_event.text = event.title
         itemView.price_event.text = event.price.toString()
         itemView.date_event.text = FormatDate.formatDate(event.date)
-        getImagem(event.image)
+        loadImage(event.image)
+
+        itemView.setOnClickListener {
+            router.toGoDetailScreen(event)
+        }
     }
 
-    private fun getImagem(urlImg: String) {
+    private fun loadImage(urlImg: String) {
         Picasso
             .with(context)
             .load(urlImg)

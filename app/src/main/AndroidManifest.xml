@@ -5,14 +5,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".MyApplication"
-        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EventsProject">
+        android:theme="@style/Theme.EventsProject"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".app.features.eventdetail.ui.EventDetailActivity"></activity>
         <activity android:name=".app.features.events.ui.EventsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,8 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.features.BaseActivity">
-        </activity>
+        <activity android:name=".app.features.BaseActivity"></activity>
     </application>
 
 </manifest>

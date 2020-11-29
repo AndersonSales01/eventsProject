@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">EventsProject</string>
+    <string name="btn_effect_checkin">CheckIn</string>
+    <string name="email_invalid">E-mail invalido!!</string>
+    <string name="name_invalid">O nome deve ter mais de 3 caracteres!!</string>
+    <string name="checkin_sucess">Checkin Realizado com sucesso</string>
 </resources>

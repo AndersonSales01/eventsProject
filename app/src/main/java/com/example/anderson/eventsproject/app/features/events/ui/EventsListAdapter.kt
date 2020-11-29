@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.eventsproject.R
 import com.example.anderson.eventsproject.domain.model.Event
 
-class EventsListAdapter(private val context: Context) : RecyclerView.Adapter<EventViewHolder>() {
+class EventsListAdapter(private val context: Context,private val router: Router) : RecyclerView.Adapter<EventViewHolder>() {
 
     private var listEvents: List<Event> = mutableListOf()
 
@@ -20,7 +20,7 @@ class EventsListAdapter(private val context: Context) : RecyclerView.Adapter<Eve
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_list_events, parent, false)
 
-        return EventViewHolder(context,view)
+        return EventViewHolder(context,router,view)
     }
 
     override fun getItemCount(): Int {

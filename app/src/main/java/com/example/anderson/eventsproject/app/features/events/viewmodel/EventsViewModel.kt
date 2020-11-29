@@ -17,10 +17,14 @@ class EventsViewModel @Inject constructor() : ViewModel() {
     private val _listEvents = MutableLiveData<List<Event>>()
     var listEvent: LiveData<List<Event>> = _listEvents
 
+    private val _loading = MutableLiveData<Boolean>()
+    var loading: LiveData<Boolean> = _loading
+
     @Inject
     lateinit var getEvents: GetEvents
 
     fun getEvents() {
+        _loading.value = true
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 try {
@@ -33,6 +37,8 @@ class EventsViewModel @Inject constructor() : ViewModel() {
                 } catch (e: Exception) {
 
                 }
+
+                _loading.postValue(false)
             }
         }
     }
