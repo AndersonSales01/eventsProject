@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.anderson.eventsproject.MyApplication
@@ -21,8 +22,10 @@ import com.example.anderson.eventsproject.app.util.FormatDate
 import com.example.anderson.eventsproject.app.util.SharedUtil
 import com.example.anderson.eventsproject.domain.model.CheckIn
 import com.example.anderson.eventsproject.domain.model.Event
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -77,7 +80,10 @@ class EventDetailActivity : BaseActivity() {
 
     override fun observables() {
       viewModel.eventDetail.observe(this, Observer { eventDetails->
-
+          icon_date.visibility = View.VISIBLE
+          icon_price.visibility = View.VISIBLE
+          price_sigle.visibility = View.VISIBLE
+          btn_options.visibility = View.VISIBLE
           event = eventDetails
           detail_title.text = eventDetails.title
           detail_date_event.text = FormatDate.formatDate(eventDetails.date)
@@ -109,6 +115,12 @@ class EventDetailActivity : BaseActivity() {
                 showSnackBarCheckInSucess()
                 dialog.checkin_name.text?.clear()
                 dialog.checkin_email.text?.clear()
+            }
+        })
+
+        viewModel.isHasInternet.observe(this, Observer {
+            if(!it){
+                Toast.makeText(this,"Sem conexão!!", Toast.LENGTH_SHORT).show()
             }
         })
     }

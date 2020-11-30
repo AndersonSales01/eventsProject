@@ -45,7 +45,7 @@ class EventRepositoryImpl @Inject constructor(private var endPoint: EventApi) : 
 
     override suspend fun checkIn(checkIn: CheckIn): Boolean {
         var success = false
-        val checkInRequest = CheckInRequest(checkIn.name, checkIn.email, checkIn.idTest)
+        val checkInRequest = CheckInRequest(checkIn.name, checkIn.email, checkIn.idEvent)
         val response = endPoint.checkIn(checkInRequest)
         if (response.isSuccessful) {
             success = response.body()?.code == "200"

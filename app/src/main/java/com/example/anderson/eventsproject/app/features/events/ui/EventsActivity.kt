@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -61,6 +62,12 @@ class EventsActivity : BaseActivity(), Router {
                 loading_event.visibility = View.VISIBLE
             }else {
                 loading_event.visibility = View.GONE
+            }
+        })
+
+        viewModel.isHasInternet.observe(this, Observer {
+            if (!it) {
+                Toast.makeText(this, "Sem conexão!!", Toast.LENGTH_SHORT).show()
             }
         })
     }

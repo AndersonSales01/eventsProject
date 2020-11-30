@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anderson.eventsproject.R
+import com.example.anderson.eventsproject.app.util.ConnectionTest
 import com.example.anderson.eventsproject.domain.model.CheckIn
 import com.example.anderson.eventsproject.domain.model.Event
 import com.example.anderson.eventsproject.domain.usecases.EfetuateCheckIn
@@ -35,7 +36,8 @@ class EventDetailViewModel @Inject constructor( var context: Context) : ViewMode
     private val _checkInSucess = MutableLiveData<Boolean>()
     var checkInSucess: LiveData<Boolean> = _checkInSucess
 
-
+    private val _isHasInternet= MutableLiveData<Boolean>()
+    var isHasInternet: LiveData<Boolean> = _isHasInternet
 
     var isNameValid = false
     var isEmailValid = false
@@ -52,11 +54,17 @@ class EventDetailViewModel @Inject constructor( var context: Context) : ViewMode
     fun getEventDetails(id: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val eventDetails = getEventDetails.execute(id)
-                if (eventDetails != null) {
-                    _event.postValue(eventDetails)
+                if (ConnectionTest.verifyConectation()) {
+                    _isHasInternet.postValue(true)
+                    val eventDetails = getEventDetails.execute(id)
+                    if (eventDetails != null) {
+                        _event.postValue(eventDetails)
+                        Log.d("Detail", eventDetails.toString())
+                    }
+                } else {
+                    _isHasInternet.postValue(false)
                 }
-                Log.d("Detail", eventDetails.toString())
+
             }
         }
     }
@@ -64,7 +72,12 @@ class EventDetailViewModel @Inject constructor( var context: Context) : ViewMode
     fun checkIn(checkIn: CheckIn) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                _checkInSucess.postValue(efetuateCheckIn.execute(checkIn))
+                if (ConnectionTest.verifyConectation()) {
+                    _isHasInternet.postValue(true)
+                    _checkInSucess.postValue(efetuateCheckIn.execute(checkIn))
+                }else {
+                    _isHasInternet.postValue(false)
+                }
             }
         }
     }
