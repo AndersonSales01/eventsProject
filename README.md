@@ -7,8 +7,8 @@
 Nesse projeto foi utilizado o **Clean Architecture + MVVM**, onde a junção dessas duas arquiteturas traz uma proposta bastante interessante e também trabalha bastante com os principios do SOLID. As principais vantagens é o desacoplamento, organização do código, facilidade na testabilidade e clean code, na minha visão acredito que única desvantagem é a curva de aprendizado, pois as vezes requer um tempo para que os desenvolvedores entendam os conceitos e reponsabilidade de cada camada da arquitetura.
 
 
-![Image](https://github.com/AndersonSales01/eventsProject/tree/main/app/src/main/res/imgs/image_architecture.png)
-![Fluxo comunicação](https://github.com/AndersonSales01/eventsProject/tree/main/app/src/main/res/imgs/comunication_flow.png)
+![Arquitetura](https://github.com/AndersonSales01/eventsProject/tree/main/imgs/image_architecture.png)
+![Fluxo comunicação](https://github.com/AndersonSales01/eventsProject/tree/main/imgs/comunication_flow.png)
 
 ## Tecnologias
 Segue abaixo as seguintes bibliotecas e frameworks utilizadas:
