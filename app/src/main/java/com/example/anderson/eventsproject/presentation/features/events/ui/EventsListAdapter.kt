@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.features.events.ui
+package com.example.anderson.eventsproject.presentation.features.events.ui
 
 import android.content.Context
 import android.view.LayoutInflater

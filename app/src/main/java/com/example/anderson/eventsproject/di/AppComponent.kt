@@ -1,7 +1,7 @@
 package com.example.anderson.eventsproject.di
 
 import android.content.Context
-import com.example.anderson.eventsproject.app.di.PresentationSubComponent
+import com.example.anderson.eventsproject.presentation.di.PresentationSubComponent
 import com.example.anderson.eventsproject.domain.di.DomainSubComponent
 import dagger.BindsInstance
 import dagger.Component

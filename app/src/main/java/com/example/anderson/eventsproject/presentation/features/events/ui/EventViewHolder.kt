@@ -1,10 +1,9 @@
-package com.example.anderson.eventsproject.app.features.events.ui
+package com.example.anderson.eventsproject.presentation.features.events.ui
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.anderson.eventsproject.app.util.FormatDate
+import com.example.anderson.eventsproject.presentation.util.FormatDate
 import com.example.anderson.eventsproject.domain.model.Event
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_events.view.*

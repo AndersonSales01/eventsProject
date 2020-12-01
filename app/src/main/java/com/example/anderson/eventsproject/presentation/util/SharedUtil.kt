@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.util
+package com.example.anderson.eventsproject.presentation.util
 
 import android.content.Context
 import android.content.Intent

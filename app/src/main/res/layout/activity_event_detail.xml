@@ -5,7 +5,7 @@
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.features.eventdetail.ui.EventDetailActivity">
+    tools:context=".presentation.features.eventdetail.ui.EventDetailActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -167,6 +167,45 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/ic_menu"
                 tools:ignore="VectorDrawableCompat" />
+
+            <LinearLayout
+                android:id="@+id/ll_detail_maps"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="16dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/detail_description_event"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/teal_700"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:text="@string/adress"/>
+
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:id="@+id/detail_maps"
+                    android:layout_marginTop="16dp"
+                    tools:context=".MapsActivity"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+                <ImageView
+                    android:id="@+id/transparent_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"/>
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.features
+package com.example.anderson.eventsproject.presentation.features
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

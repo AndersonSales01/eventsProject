@@ -1,10 +1,10 @@
-package com.example.anderson.eventsproject.app.features.events.viewmodel
+package com.example.anderson.eventsproject.presentation.features.events.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.anderson.eventsproject.app.util.ConnectionTest
+import com.example.anderson.eventsproject.presentation.util.ConnectionTest
 import com.example.anderson.eventsproject.domain.model.Event
 import com.example.anderson.eventsproject.domain.usecases.GetEvents
 import kotlinx.coroutines.Dispatchers

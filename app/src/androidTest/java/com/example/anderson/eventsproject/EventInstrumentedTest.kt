@@ -1,27 +1,20 @@
 package com.example.anderson.eventsproject
 
-import android.service.autofill.Validators.not
 import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.pressBack
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import com.example.anderson.eventsproject.app.features.events.ui.EventViewHolder
-import com.example.anderson.eventsproject.app.features.events.ui.EventsActivity
-import com.example.anderson.eventsproject.app.features.events.ui.EventsListAdapter
-import org.hamcrest.Matchers.isEmptyString
+import com.example.anderson.eventsproject.presentation.features.events.ui.EventViewHolder
+import com.example.anderson.eventsproject.presentation.features.events.ui.EventsActivity
 
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 import org.junit.Rule
-import java.util.regex.Pattern.matches
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -61,7 +54,9 @@ class EventInstrumentedTest {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
         Espresso.onView(withId(R.id.list_events)).perform(
-            RecyclerViewActions.actionOnItemAtPosition<EventViewHolder>(3, ViewActions.click()))
+            RecyclerViewActions.actionOnItemAtPosition<EventViewHolder>(0, ViewActions.click()))
+
+        Thread.sleep(3000)
 
         Espresso.onView(withId(R.id.btn_options)).perform(ViewActions.click())
 
@@ -83,10 +78,6 @@ class EventInstrumentedTest {
 
         Thread.sleep(3000)
 
-        Espresso.onView(withId(R.id.textView))
-            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
-
-        Thread.sleep(3000)
 
 
     }

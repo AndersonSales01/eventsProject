@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.di
+package com.example.anderson.eventsproject.presentation.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

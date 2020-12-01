@@ -1,7 +1,7 @@
-package com.example.anderson.eventsproject.app.di
+package com.example.anderson.eventsproject.presentation.di
 
-import com.example.anderson.eventsproject.app.features.eventdetail.ui.EventDetailActivity
-import com.example.anderson.eventsproject.app.features.events.ui.EventsActivity
+import com.example.anderson.eventsproject.presentation.features.eventdetail.ui.EventDetailActivity
+import com.example.anderson.eventsproject.presentation.features.events.ui.EventsActivity
 import dagger.Subcomponent
 
 @Subcomponent(modules = [ViewModelBuilderModule::class,ViewModelModule::class])

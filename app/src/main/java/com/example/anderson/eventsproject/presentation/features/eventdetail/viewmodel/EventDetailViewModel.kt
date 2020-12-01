@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.features.eventdetail.viewmodel
+package com.example.anderson.eventsproject.presentation.features.eventdetail.viewmodel
 
 import android.content.Context
 import android.util.Log
@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anderson.eventsproject.R
-import com.example.anderson.eventsproject.app.util.ConnectionTest
+import com.example.anderson.eventsproject.presentation.util.ConnectionTest
 import com.example.anderson.eventsproject.domain.model.CheckIn
 import com.example.anderson.eventsproject.domain.model.Event
 import com.example.anderson.eventsproject.domain.usecases.EfetuateCheckIn

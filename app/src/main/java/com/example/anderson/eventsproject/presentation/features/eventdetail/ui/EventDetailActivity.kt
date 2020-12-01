@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.features.eventdetail.ui
+package com.example.anderson.eventsproject.presentation.features.eventdetail.ui
 
 import android.app.Dialog
 import android.graphics.Color
@@ -15,16 +15,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.anderson.eventsproject.MyApplication
 import com.example.anderson.eventsproject.R
-import com.example.anderson.eventsproject.app.features.BaseActivity
-import com.example.anderson.eventsproject.app.features.eventdetail.viewmodel.EventDetailViewModel
-import com.example.anderson.eventsproject.app.features.events.ui.EventsActivity.Companion.ID_EVENT_INTENT
-import com.example.anderson.eventsproject.app.util.FormatDate
-import com.example.anderson.eventsproject.app.util.SharedUtil
+import com.example.anderson.eventsproject.presentation.features.BaseActivity
+import com.example.anderson.eventsproject.presentation.features.eventdetail.viewmodel.EventDetailViewModel
+import com.example.anderson.eventsproject.presentation.features.events.ui.EventsActivity.Companion.ID_EVENT_INTENT
+import com.example.anderson.eventsproject.presentation.util.FormatDate
+import com.example.anderson.eventsproject.presentation.util.SharedUtil
 import com.example.anderson.eventsproject.domain.model.CheckIn
 import com.example.anderson.eventsproject.domain.model.Event
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -41,6 +40,10 @@ class EventDetailActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: EventDetailViewModel
+
+    // GoogleMaps variables
+    lateinit var mapFragment: SupportMapFragment
+    lateinit var googleMap: GoogleMap
 
     //Animations
 
@@ -84,13 +87,9 @@ class EventDetailActivity : BaseActivity() {
           icon_price.visibility = View.VISIBLE
           price_sigle.visibility = View.VISIBLE
           btn_options.visibility = View.VISIBLE
-          event = eventDetails
-          detail_title.text = eventDetails.title
-          detail_date_event.text = FormatDate.formatDate(eventDetails.date)
-          detail_description_event.text = eventDetails.description
-          detail_price_event.text = eventDetails.price.toString()
+          ll_detail_maps.visibility = View.VISIBLE
 
-          loadImage(eventDetails.image)
+          bindData(eventDetails)
       })
 
         viewModel.formCheckInValid.observe(this, Observer {valid->
@@ -164,6 +163,18 @@ class EventDetailActivity : BaseActivity() {
 
     }
 
+    private fun bindData(eventDetails: Event){
+        event = eventDetails
+        detail_title.text = eventDetails.title
+        detail_date_event.text = FormatDate.formatDate(eventDetails.date)
+        detail_description_event.text = eventDetails.description
+        detail_price_event.text = eventDetails.price.toString()
+
+        loadImage(eventDetails.image)
+
+        configGoogleMaps(eventDetails.title,eventDetails.latitude.toDouble(), eventDetails.longitude.toDouble())
+    }
+
     private fun onOptionsButtonClicked() {
         setVisibility(clicked)
         setAnimation(clicked)
@@ -226,6 +237,18 @@ class EventDetailActivity : BaseActivity() {
         snackBar.view.layoutParams = params
         snackLayout.addView(custom, 0)
         snackBar.show()
+    }
+
+    fun configGoogleMaps(title: String, latitude: Double, longitude: Double){
+        mapFragment = detail_maps as SupportMapFragment
+        mapFragment.getMapAsync {
+            googleMap = it
+            val location = LatLng(latitude, longitude)
+            googleMap.addMarker(MarkerOptions().position(location).title(title))
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15f))
+
+        }
+
     }
 
 }

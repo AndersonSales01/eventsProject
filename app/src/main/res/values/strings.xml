@@ -4,4 +4,5 @@
     <string name="email_invalid">E-mail invalido!!</string>
     <string name="name_invalid">O nome deve ter mais de 3 caracteres!!</string>
     <string name="checkin_sucess">Check-in realizado com sucesso</string>
+    <string name="adress">Endereço: </string>
 </resources>

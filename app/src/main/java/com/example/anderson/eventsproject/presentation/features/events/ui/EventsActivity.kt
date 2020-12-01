@@ -1,4 +1,4 @@
-package com.example.anderson.eventsproject.app.features.events.ui
+package com.example.anderson.eventsproject.presentation.features.events.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anderson.eventsproject.MyApplication
 import com.example.anderson.eventsproject.R
-import com.example.anderson.eventsproject.app.features.BaseActivity
-import com.example.anderson.eventsproject.app.features.eventdetail.ui.EventDetailActivity
-import com.example.anderson.eventsproject.app.features.events.viewmodel.EventsViewModel
+import com.example.anderson.eventsproject.presentation.features.BaseActivity
+import com.example.anderson.eventsproject.presentation.features.eventdetail.ui.EventDetailActivity
+import com.example.anderson.eventsproject.presentation.features.events.viewmodel.EventsViewModel
 import com.example.anderson.eventsproject.domain.model.Event
 import kotlinx.android.synthetic.main.activity_events.*
 import javax.inject.Inject
